@@ -1,5 +1,5 @@
 # BFG Framework: one-command run (API + DB + Redis).
-# Copy server/.env.example to server/.env and set SECRET_KEY, DATABASE_URL, FRONTEND_URL.
+# Uses repo root .env (copy from .env.example or server/.env.example if missing).
 
 services:
   mysql:
@@ -31,7 +31,7 @@ services:
     container_name: bfg-web
     ports:
       - "8000:8000"
-    env_file: ./server/.env
+    env_file: .env
     environment:
       DATABASE_URL: mysql://bfg:bfg@mysql:3306/bfg
       CELERY_BROKER_URL: redis://redis:6379/0

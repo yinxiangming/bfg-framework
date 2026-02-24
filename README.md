@@ -37,9 +37,14 @@ docker compose exec web python manage.py createsuperuser
 - **Server:** `server/.env.example` — `DATABASE_URL`, `SECRET_KEY`, `FRONTEND_URL`, `SITE_NAME`, Redis/Celery.
 - **Client:** `NEXT_PUBLIC_API_URL` (e.g. `http://localhost:8000`), optional `NEXT_PUBLIC_MEDIA_URL`, `NEXT_PUBLIC_WORKSPACE_ID`.
 
+## Seed data and images
+
+- **Seed DB:** `python manage.py seed_data` (creates demo workspace and sample data).
+- **Copy seed images:** `python manage.py copy_seed_images` — copies avatars/products into `media/seed_images/`. Set `SEED_IMAGES_SOURCE` to your image root, or pass `--source /path`. Optional: `seed_data --copy-images` (same source) or `seed_data --copy-images --images-source /path`.
+
 ## Enterprise support & custom development
 
-We offer custom development, integration, and support on top of BFG. Contact: [your-contact-placeholder].
+We offer custom development, integration, and support on top of BFG. Contact: [mark@surlex.com].
 
 ## License
 
