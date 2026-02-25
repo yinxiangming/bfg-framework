@@ -28,6 +28,17 @@ docker compose exec web python manage.py createsuperuser
 - **API docs:** http://localhost:8000/api/docs/  
 - Run the **client** (see [Quick Start](guide/quickstart.md)).
 
+### Reset migrations and re-init
+
+From `server/`: clear bfg migrations, drop DB tables, regenerate and migrate:
+
+```bash
+make reset-migrations
+python manage.py init
+```
+
+`init` creates a workspace and superadmin (names via `--workspace-name`, `--workspace-slug`, `--superadmin`; default slug `default`, user `superadmin`). Password from `ADMIN_PASSWORD` or `admin123`. It then prompts to import seed_data unless you pass `--seed-data` or `--no-seed-data`.
+
 ## Docs
 
 - [Quick Start](guide/quickstart.md) — Run server and client locally or with Docker.
