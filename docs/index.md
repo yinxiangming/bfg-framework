@@ -37,7 +37,7 @@ make reset-migrations
 python manage.py init
 ```
 
-`init` runs migrate, then creates a workspace and admin user (default slug `default`, username `admin`; overridable via `--workspace-name`, `--workspace-slug`, `--admin`). You are prompted for the admin password. It then prompts to import seed_data and load site config (e.g. web/design/site-config-xmart.json) unless you pass `--seed-data` or `--no-seed-data`. Use `--no-migrate` to skip migrate.
+`init` runs migrate, then creates a workspace and admin user (default slug `default`, username `admin`; overridable via `--workspace-name`, `--workspace-slug`, `--admin`). You are prompted for the admin password. It then prompts to import seed_data and load site config (e.g. web/design/site-config-store.json) unless you pass `--seed-data` or `--no-seed-data`. Use `--no-migrate` to skip migrate.
 
 ## Docs
 
