@@ -44,8 +44,8 @@ docker compose exec web python manage.py createsuperuser
 
 ## Enterprise support & custom development
 
-We offer custom development, integration, and support on top of BFG. Contact: [mark@surlex.com].
+We offer custom development, integration, and support on top of BFG. Contact: [bfg@surlex.com].
 
 ## License
 
-[Choose: MIT / Apache 2.0]
+MIT
