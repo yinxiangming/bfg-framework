@@ -13,6 +13,8 @@ import Icon from '@components/Icon'
 import UserDropdown from '../ui/UserDropdown'
 import CurrentUserDisplay from '../ui/CurrentUserDisplay'
 import LanguageSwitcher from '@/components/i18n/LanguageSwitcher'
+import FeedbackButton from '@/components/feedback/FeedbackButton'
+import AgentDialog from '@/views/admin/agent/AgentDialog'
 import { getWorkspaceSettings } from '@/services/settings'
 import { useStorefrontConfig } from '@/contexts/StorefrontConfigContext'
 
@@ -33,6 +35,7 @@ const TopMenuTopbar = ({ avatarInitial = 'N' }: Props) => {
   const { config: storefrontConfig } = useStorefrontConfig()
   const [workspaceName, setWorkspaceName] = useState<string | undefined>(undefined)
   const [workspaceLogoSrc, setWorkspaceLogoSrc] = useState<string | undefined>(undefined)
+  const [agentDialogOpen, setAgentDialogOpen] = useState(false)
 
   useEffect(() => {
     getWorkspaceSettings()
@@ -70,8 +73,19 @@ const TopMenuTopbar = ({ avatarInitial = 'N' }: Props) => {
         </button>
         <ThemeSwitcher />
         <LanguageSwitcher />
+        <FeedbackButton variant='button' source='account' />
+        <button
+          type='button'
+          className='topmenu-topbar-btn'
+          onClick={() => setAgentDialogOpen(true)}
+          aria-label='AI Assistant'
+        >
+          <Icon icon='tabler-robot' />
+          <span>AI</span>
+        </button>
         <UserDropdown avatarInitial={avatarInitial} />
       </div>
+      <AgentDialog open={agentDialogOpen} onClose={() => setAgentDialogOpen(false)} />
     </div>
   )
 }

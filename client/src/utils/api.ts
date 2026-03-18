@@ -83,6 +83,7 @@ export const bfgApi = {
   menus: () => buildApiUrl('/web/menus/', API_VERSIONS.BFG2),
   media: () => buildApiUrl('/web/media/', API_VERSIONS.BFG2),
   inquiries: () => buildApiUrl('/web/inquiries/', API_VERSIONS.BFG2),
+  feedback: () => buildApiUrl('/web/feedback/', API_VERSIONS.BFG2),
   newsletterSubscriptions: () => buildApiUrl('/web/newsletter-subscriptions/', API_VERSIONS.BFG2),
   newsletterTemplates: () => buildApiUrl('/web/newsletter-templates/', API_VERSIONS.BFG2),
   newsletterSends: () => buildApiUrl('/web/newsletter-sends/', API_VERSIONS.BFG2),
@@ -156,7 +157,13 @@ export const bfgApi = {
   // Inbox/Notifications
   messageTemplates: () => buildApiUrl('/inbox/templates/', API_VERSIONS.BFG2),
   messages: () => buildApiUrl('/inbox/messages/', API_VERSIONS.BFG2),
-  recipients: () => buildApiUrl('/inbox/recipients/', API_VERSIONS.BFG2)
+  recipients: () => buildApiUrl('/inbox/recipients/', API_VERSIONS.BFG2),
+
+  // Agent (AI capabilities)
+  agentCapabilities: (format?: 'openai_tools') =>
+    buildApiUrl('/agent/capabilities/', API_VERSIONS.BFG2) + (format ? `?format=${encodeURIComponent(format)}` : ''),
+  agentExecute: () => buildApiUrl('/agent/execute/', API_VERSIONS.BFG2),
+  agentChat: () => buildApiUrl('/agent/chat/', API_VERSIONS.BFG2),
 }
 
 /**
@@ -232,6 +239,21 @@ function redirectToLoginIfAdminUnauthorized(status: number): void {
   const href = window.location.href
   const redirect = encodeURIComponent(href)
   window.location.href = `/auth/login?redirect=${redirect}`
+}
+
+/**
+ * Build request init (method, headers, body) for agent chat. Used by both JSON and SSE streaming.
+ */
+export function getAgentChatRequestInit(body: Record<string, unknown>): RequestInit {
+  const token = getAuthToken()
+  const workspaceId = getWorkspaceId()
+  const headers: Record<string, string> = {
+    ...getApiLanguageHeaders(),
+    'Content-Type': 'application/json'
+  }
+  if (token) headers['Authorization'] = `Bearer ${token}`
+  if (workspaceId) headers['X-Workspace-ID'] = workspaceId
+  return { method: 'POST', headers, body: JSON.stringify(body) }
 }
 
 /**
