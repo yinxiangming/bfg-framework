@@ -1,13 +1,15 @@
 # BFG Framework (monorepo) — **archived**
 
-This repository is **no longer maintained**. Development continues in two separate repositories:
+This repository is **no longer maintained**. Development continues in separate repositories:
 
 | Component | Repository |
 |-----------|------------|
-| Django backend | **[bfg-server-django](https://github.com/yinxiangming/bfg-server-django)** |
+| Django backend (Python) | **[bfg-server-django](https://github.com/yinxiangming/bfg-server-django)** |
+| .NET backend | **[bfg-server-dotnet](https://github.com/yinxiangming/bfg-server-dotnet)** |
+| Node.js backend | **[bfg-server-nodejs](https://github.com/yinxiangming/bfg-server-nodejs)** |
 | Next.js admin + storefront | **[bfg-client-react](https://github.com/yinxiangming/bfg-client-react)** |
 
-Clone those repos for new work, issues, and pull requests. This monorepo remains available for historical reference only.
+Use those repos for new work, issues, and pull requests. This monorepo remains available for historical reference only.
 
 ---
 
